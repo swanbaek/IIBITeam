@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<title>:::E-Board:::</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/board.js"></script>
+<link rel="stylesheet" href="stylesheets/style.css">
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+<script type="text/javascript">
+	
+	$(function(){
+		var ctx=$('#cv').get(0).getContext('2d');
+		ctx.strokeStyle='white';
+		ctx.lineWidth=2;
+		ctx.beginPath();
+		
+		 var drawing=false;
+		$('#cv').bind("mousedown",function(e){
+			drawing=true;
+			ctx.moveTo(e.pageX,e.pageY);
+			//console.log("moveTo: x="+e.pageX+", y="+e.pageY);
+		});
+		
+		$('#cv').bind("mousemove",function(e){
+			if(drawing){
+				ctx.lineTo(e.pageX,e.pageY);
+				ctx.stroke();
+				//console.log("lineTo: x="+e.pageX+", y="+e.pageY);
+			}
+		});
+		$('#cv').bind("mouseup",function(e){
+			drawing=false;
+		}); 
+	});
+	
+</script>
+
+</head>
+<body>
+
+<canvas id = 'cv' width='860px;' height='645px;'></canvas>
+<!-- 캔버스에 꼭 폭과 높이 지정해야. 안그러면 오동작 함 -->
+<div class="menu">
+<button id="clear" class="btn btn-info">Clear</button>
+<fieldset class="pen_color">
+ <legend>펜 색상</legend>
+ <span  id="penR" class="label label-danger">Red</span>
+ <span  id="penG" class="label label-success">Green</span>
+ <span  id="penB" class="label label-primary">Blue</span>
+ <span  id="penP" class="label" style="background-color:pink">Pink</span>
+</fieldset>
+
+<fieldset  id="f_width">
+ <legend >펜 두께</legend>
+ <input type="number" id="pen_width" min="2" max="8">
+</fieldset>
+
+<fieldset id="f_shape">
+ <legend >펜 모양</legend>
+ <select  id="pen_shape" ></select>
+</fieldset>
+</div>
+</body>
+</html>
