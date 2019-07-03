@@ -1,0 +1,45 @@
+body {
+  margin: 0px;
+  -webkit-user-select:none;  /*웹 페이지 드래그시 드래그 되지 않도록*/
+}
+
+#cv{
+	width:865px;
+	height:645px;
+	/* background-color:black; */
+	background-image:url('../images/blackboard.jpg');
+	float:left;
+}
+.menu{
+	float:left;
+	width:150px;
+	margin:30px;	
+}
+button,select{
+	width:100px;
+	height:40px;
+	float:left;
+}
+fieldset.pen_color{
+	width:200px;
+	height:150px;
+	float:left;
+}
+.clear{
+	clear:both;
+}
+#f_width{
+	width:150px;
+	height:60px;
+	float:left;
+
+}
+#f_shape, pen_shape{
+	position:absolute;
+	top:10px;
+	left:700px;
+	height:70px;
+	width:150px;
+	color:white;
+	border:2px dashed white;
+}
