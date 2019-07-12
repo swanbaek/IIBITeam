@@ -1,0 +1,50 @@
+<% include ../top.ejs %>
+<div class="container">
+    <h1 class="text-primary"><%=title%></h1>
+    <div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<form name="mf" action="/join" method="post">
+				<table class="table">
+					<tr>
+						<th width="20%">
+						<label for="name">이름</label></th>
+						<td width="80%">
+							<input type="text" name="name" id="name"
+							 placeholder="이름을 입력하세요"
+							class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<th><label for="userid">아이디</label></th>
+						<td>
+							<div class="col-md-8" style="padding-left:0">
+							<input type="text" name="userid" id="userid"							
+							 placeholder="아이디를 입력하세요"							
+							class="form-control">
+							</div>
+							<div class="col-md-2">
+							<button type="button" 							
+							class="btn btn-success">
+							아이디 중복체크</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="pwd">비밀번호</label></th>
+						<td>
+							<input type="password" name="pwd" id="pwd"
+							 placeholder="비밀번호를 입력하세요"
+							class="form-control">
+						</td>
+                    </tr>
+                 <tr>
+                     <td colspan="2">
+                        <button class="btn btn-success">회원가입</button>
+                     </td>
+                 </tr>   
+</table>
+   </form>
+   </div>
+   </div> 
+</div>
+<% include ../foot.ejs %>
