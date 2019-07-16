@@ -1,0 +1,40 @@
+//userList.ejs
+<% include ../top.ejs%>
+<div class="container">
+<h1>Member List</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>번호</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>수정|삭제</th>
+        </tr>
+        <%
+            var len=data.length;//행의 수
+            if(len==0){
+                %>
+            <tr><td colspan="4">
+                현재 등록된 회원은 없습니다.
+            </td></tr>    
+                <%
+            }else{
+               for(var i=0;i<len;i++){ 
+        %>
+        <tr>
+            <td with="20%"><%=data[i][0]%></td>
+            <td width="30%"><%=data[i][1]%></td>
+            <td width="30%"><%=data[i][2]%></td>
+            <td width="20%">
+                <a class="btn btn-success"
+                 href="/users/<%=data[i][0]%>">수정</a>
+                <a class="btn btn-warning"
+                href="/users/delete/<%=data[i][0]%>">삭제</a>
+            </td>
+        </tr>
+        <%
+               }//for---   
+            }//else-----        
+        %>
+    </table>
+</div>
+<% include ../foot.ejs%>
