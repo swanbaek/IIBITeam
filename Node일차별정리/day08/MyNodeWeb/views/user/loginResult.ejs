@@ -1,0 +1,19 @@
+<%
+if(!Boolean(isLogin)){
+%>
+    <script>
+       alert('아이디 또는 비밀번호가 일치하지 않아요');
+       location.href="/login";
+    </script>
+<%
+}else{
+%>
+    <script>
+        alert('<%=user.name%>님 환영합니다');
+        location.href='/';    
+    </script>
+
+<%
+}
+%>
+

@@ -1,0 +1,83 @@
+<% include ../top.ejs %>
+
+<script>
+	function idCheck(){
+		//사용자가 입력한 userid값 받기
+		var uid=$('#userid').val();
+		if(!uid){
+			alert('아이디를 입력하세요');
+			$('#userid').focus();
+			return;
+		}//if-----
+		$.ajax({
+			type:'GET',
+			url:'/idcheck?userid='+uid,
+			dataType:'json',
+			cache:false,
+			success:function(res){
+				//alert(res);
+				var b=Boolean(res.isUse);
+				if(b){
+				$('#idResult').html(uid+"는 사용가능합니다")
+							  .css({color:'blue',fontWeight:'bold'});				
+				}else{
+					$('#idResult').html(uid+"는 이미 사용중인 아이디입니다.")
+							  .css({color:'red',fontWeight:'bold'});					
+				}
+
+			},
+			error:function(err){
+				alert(err.status);
+			}
+		})
+	}
+</script>
+
+<div class="container">
+    <h1 class="text-primary"><%=title%></h1>
+    <div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<form name="mf" action="/join" method="post">
+				<table class="table">
+					<tr>
+						<th width="20%">
+						<label for="name">이름</label></th>
+						<td width="80%">
+							<input type="text" name="name" id="name"
+							 placeholder="이름을 입력하세요"
+							class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<th><label for="userid">아이디</label></th>
+						<td>
+							<div class="col-md-8" style="padding-left:0">
+							<input type="text" name="userid" id="userid"							
+							 placeholder="아이디를 입력하세요"
+							 onchange="idCheck()"							
+							class="form-control">
+							</div>
+							<div class="col-md-4">
+							<span id="idResult"></span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="pwd">비밀번호</label></th>
+						<td>
+							<input type="password" name="pwd" id="pwd"
+							 placeholder="비밀번호를 입력하세요"
+							class="form-control">
+						</td>
+                    </tr>
+                 <tr>
+                     <td colspan="2">
+                        <button class="btn btn-success">회원가입</button>
+                     </td>
+                 </tr>   
+</table>
+   </form>
+   </div>
+   </div> 
+</div>
+<% include ../foot.ejs %>
